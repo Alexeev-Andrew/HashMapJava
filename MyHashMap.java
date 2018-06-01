@@ -63,8 +63,20 @@ public class MyHashMap<Key,Value>{
 	 public void remove(Key key){
 		 for(int i = hash(key); map[i] != null; i = (i+1) % length)
 			 if(map[i].compareKey(key)){
-				 map[i]=null;
+				 int j=(i+1) % length;
+				 int k=i;
+				 while(map[j]!=null){
+					 if(hash(map[j].getKey())==hash(map[i].getKey())) k=j;
+					 j=(j+1) % length;
+				 }
+				 if(k!=i){
+					 map[i]=map[k];
+					 map[k] = null;
+				 }
+				 else
+					 map[i]=null;
 				 size--;
+				 return;
 			 }
 			 
 	 }
@@ -91,7 +103,10 @@ public class MyHashMap<Key,Value>{
 	  * @return <tt>true</tt> if this map contains a mapping for the specified
 	  */
 	 public boolean containsKey(Key key) {
-		 return map[hash(key)] != null;
+		 for(int i = hash(key); map[i] != null; i = (i+1) % length) 
+			 if(map[hash(key)].compareKey(key)) 
+				 return true;
+		 return false;
 	 }
 	 
 	 public boolean isEmpty(){

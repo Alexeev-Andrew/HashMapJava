@@ -48,6 +48,12 @@ public class Test {
 			System.out.print(pair+("  "));
 		}
 		System.out.println("\nSize = "+tester.size());
+		System.out.println("Contains key null? "+tester.containsKey(null));
+		System.out.println("Contains key 10? "+tester.containsKey(10));
+		System.out.println("Contains key 11? "+tester.containsKey(11));
+		System.out.println("Contains key 23? "+tester.containsKey(23));
+		System.out.println("Contains key 0? "+tester.containsKey(0));
+		
 	}
 	
 	
